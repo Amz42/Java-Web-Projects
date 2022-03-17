@@ -13,6 +13,10 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    public StudentServiceImpl(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
     @Override
     public Student save(Student student) {
         return studentRepository.save(student);
@@ -23,4 +27,13 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll();
     }
 
+    @Override
+    public Student get(Integer studentId) {
+        return studentRepository.findById(studentId).get();
+    }
+
+    @Override
+    public void deleteById(Integer studentId) {
+        studentRepository.deleteById(studentId);
+    }
 }
